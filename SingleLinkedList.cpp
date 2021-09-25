@@ -3,76 +3,51 @@
 
 #include <iostream>
 #include <list>
-#include "listoperation.h"
+#include "node.h"
 
 using namespace std;
-node *m_head;
 
-node * insertOneNode(int val)
-{
-	m_head = new node;
-	m_head->data = val;
-	cout << " node value\n" << m_head->data;
-	m_head->next = nullptr;
-	return m_head;
-}
 
-void insertNodeAtEnd(int val)
-{
-	node *p = m_head;
-	node *q = p;
-	node *newnode = new node;
-	newnode->data = val;
-	newnode->next = nullptr;
-	while (p->next != nullptr)
-	{
-		p = p->next;
-	}
-	p->next = newnode;
-}
 
-void display()
-{
-	node *p = m_head;
-	cout << "list values are :";
-	while (p != nullptr)
-	{
-		cout << p->data << endl;;
-		p = p->next;
 
-	}
-}
+
+
 
 
 int main()
 {
 	std::cout << "Single List operations";
+	int pos;
 	
 	while (1)
-
 	{
-		cout << "1.insert node\n 2.insertNodeAtEnd \n 3. display" << endl;
-		int val;
+		cout << " 1.Add item to list\n 2. Get item from given position\n 3. set and item at given position\n 4. Inserts an item at given position\n 5. remove\n 6. display all items\n 7. Exit" << endl;
+		int val,nodeval,data;
 		cin >> val;
-		node *head;
+		node *list = new node();
 		switch (val)
 		{
+		case 1: 
+			cout << "Enter values" << endl;
+			cin >> nodeval;
+			list->insertNodeAtEnd(nodeval);
+			break;
 
-		case 1: insertOneNode(10);
+		case 2: cout << "Enter the position of node value to fetched" << endl;
 			
-			break;
+			cin >> pos;
+			data = list ->getItemfromGivenPosition(pos);
+			cout << "Data at pos is:" << data << endl;
 
-		case 2: //ListOperation listManager;
-			//listManager.insertNodeAtEnd(head);
-
-			insertNodeAtEnd(20);
-			insertNodeAtEnd(50);
 			break;
-
-		case 3: display();
-			break;
+		case 3: cout << "Enter the position of node value to set and value" << endl;
+			cin >> pos;
+			cin >> val;
+			list ->setItemfromGivenPosition(pos,val);
+		case 6: list->display();
+			break; 
 		
-	case 4: exit(0);
+	case 7: exit(0);
 	}
 }
 
